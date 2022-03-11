@@ -1,0 +1,206 @@
+/************************************************************
+********************  IMPORT DES POLICES ********************
+************************************************************/
+@font-face {
+  font-family: 'Righteous';
+  font-display: block;
+  src: url('/fonts/righteous/Righteous-Regular.ttf') format('truetype');
+}
+
+* {
+  color: rgb(0, 0, 0);
+  font-family: 'Righteous';
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.3em;
+}
+
+.visible {
+  display: block;
+}
+.masque {
+  display: none;
+}
+
+#bouton_play {
+  z-index: 2;
+}
+#cible {
+  display: flex;
+  justify-content: space-evenly;
+}
+#couleurCible {
+  width: 25%;
+  border: 3px solid black;
+}
+#cible > p {
+  font-size: 2rem;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+#banniere {
+  display: flex;
+  justify-content: space-between;
+}
+
+#avatar1,
+#avatar2 {
+  width: 5vw;
+  flex-basis: 20%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+#user1,
+#user2 {
+  font-size: 2.6rem;
+  flex-basis: 70%;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#points {
+  font-size: 2.5rem;
+  flex-basis: 100%;
+  text-align: center;
+}
+#chrono {
+  display: flex;
+  font-size: 5rem;
+  justify-content: center;
+  margin-bottom: 1vh;
+}
+#joueur1,
+#joueur2 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 3px solid black;
+  margin-bottom: 5%;
+  padding: 10px;
+  border-radius: 10px;
+}
+#score1,
+#score2 {
+  font-size: 2rem;
+}
+form {
+  margin-left: 1%;
+}
+h1 {
+  font-size: 2em;
+  margin-left: 1%;
+}
+#messageInformation {
+  margin-left: 1%;
+}
+#userMessage {
+  border: 2px solid black;
+  height: 10%;
+  margin: 0 0 3% 0;
+}
+#gameUserMessage {
+  border: 2px solid black;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 3% 0;
+}
+#infosJeu {
+  position: relative;
+  height: 100%;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  width: 25vw;
+  display: none;
+  flex-direction: column;
+}
+
+#endWindow {
+  border: 4px solid black;
+  display: none;
+  justify-content: space-around;
+  height: 30%;
+  width: 80%;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+#scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#avatarWin > img {
+  height: 100%;
+}
+#winner {
+  font-size: 2.7rem;
+  margin: 0;
+}
+#looser {
+  font-size: 2rem;
+  margin: 0;
+}
+
+ul {
+  border: 2px solid black;
+}
+
+#gameZone {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 69vw;
+  height: 88vh;
+  left: 27vw;
+  top: 6vh;
+}
+#regleDuJeu {
+  width: 80%;
+  height: fit-content;
+  text-align: justify;
+  border: 4px solid black;
+  padding: 2%;
+  border-radius: 10px;
+}
+#bestScores {
+  position: relative;
+  height: 100%;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  list-style-type: auto;
+  padding: 1%;
+  border: 3px solid black;
+  width: max-content;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#bestScores > ol {
+  margin-top: auto;
+}
+#nouvellePartie {
+  border: 3px solid black;
+  width: 80%;
+  height: fit-content;
+  text-align: justify;
+  border: 4px solid black;
+  padding: 2%;
+  border-radius: 10px;
+  margin-top: 1%;
+}
+ol > li {
+  margin-top: 10px;
+}
+#bouton_play {
+  margin: 2px;
+}

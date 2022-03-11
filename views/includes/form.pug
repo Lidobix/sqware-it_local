@@ -1,0 +1,36 @@
+if login 
+  p Connexion 
+  form(action='/login' method='POST' id="form")
+    label(for='identifiant') Identifiant:
+    br
+    input#identifiant(type='text' name='identifiant')
+    br
+    br
+    label(for='password') Password:
+    br
+    input#password(type='text' name='password')
+    br
+    br
+    if login
+      input(type='submit' value='Connexion' )
+      br
+      br
+      if errorLogin == false
+        a(href='/signin') ou vous inscrire
+else 
+  p Inscription
+  form(action='/signin' method='POST' id="form")
+    label(for='identifiant') Identifiant:
+    br
+    input#identifiant(type='text' name='identifiant')
+    br
+    br
+    label(for='password') Password:
+    br
+    input#password(type='text' name='password')
+    br
+    br
+    input(type='submit' value='Inscription' )
+    br
+    br
+    a(href='/') retour à l'écran de connexion

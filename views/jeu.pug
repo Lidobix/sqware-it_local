@@ -1,0 +1,53 @@
+include includes/header.pug
+
+if logged == true
+  include includes/logout.pug
+
+#bestScores
+  | TOP 10 scores:
+  ol 
+    each joueur in best_scores 
+      li= joueur.pseudo + ' : '+ joueur.best_score + 'pts'
+
+#infosJeu.masque
+  #cible
+    p Cibles:
+    #couleurCible
+  #chrono 
+    #timer 20s
+  #joueur1
+    img#avatar1(src='' alt='')
+    #user1 -
+    #score1 0 Pts
+  #joueur2
+    img#avatar2(src='' alt='')
+    #user2 -
+    #score2 0 Pts
+
+#gameZone.visible
+  #regleDuJeu.visible 
+    | Vous et votre adversaire vous affronterez sur le même plateau de jeu: sur celui ci seront disposés des tuiles de couleurs et de tailles différentes, l'objectif sera de récupérer en cliquant le maximum de tuiles de la couleur demandée en 20 secondes.
+    br
+    br
+    | Une tuile de la bonne couleur vous rapportera 5pts, une de la mauvaise couleur vous fera perdre 2 points !
+    br
+    br
+    | Bon jeu !
+  #nouvellePartie
+    | Nouvelle partie:
+    br
+    br
+    button#bouton_play.visible Rejoindre le jeu
+    p#attenteJoueur.masque en attente d'un joueur...
+  #endWindow
+    img#avatarWin(src='' alt='')
+    #scores
+      p#winner
+      p#looser
+      form(action='/auth/game' method='GET' id="form")
+        input(type='submit' value='Nouvelle partie' )
+
+script(src='/js/game.js' type="module")
+script(src='/socket.io/socket.io.js')
+  
+  

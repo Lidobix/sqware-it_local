@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "622a5d21e46af40048ff0431"
+  },
+  "pseudo": "ludo",
+  "password": "bic",
+  "id": "292e063f-5547-4ced-9e8c-f6528d71e034",
+  "avatar": "/images/ver.jpg",
+  "score": 0,
+  "best_score": 70,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJsdWRvIiwiaWRUb2tlbiI6IjI5MmUwNjNmLTU1NDctNGNlZC05ZThjLWY2NTI4ZDcxZTAzNCIsImlhdCI6MTY0Njk0MzUyMX0.tv1H4fmlD59Dr2pSNJQuQFAskKaw4F1qath4FDNsR-Q"
+},{
+  "_id": {
+    "$oid": "622a5d3ce46af40048ff0432"
+  },
+  "pseudo": "CapitaineCradoc",
+  "password": "lovetryphon",
+  "id": "9f0087f1-12b7-46b0-9634-33faeacbc4e4",
+  "avatar": "/images/girafe.png",
+  "score": 0,
+  "best_score": 32,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJDYXBpdGFpbmVDcmFkb2MiLCJpZFRva2VuIjoiOWYwMDg3ZjEtMTJiNy00NmIwLTk2MzQtMzNmYWVhY2JjNGU0IiwiaWF0IjoxNjQ2OTQzNTQ4fQ.0IWYUA8Cr10Y9iJX2dwnGsbrL51ZJatXJWI5B-nM8-o"
+},{
+  "_id": {
+    "$oid": "622a5d6ce46af40048ff0433"
+  },
+  "pseudo": "Jean-Calude",
+  "password": "nono",
+  "id": "2445367c-6d2f-4fd7-a279-af9ec0112278",
+  "avatar": "/images/koala.png",
+  "score": 0,
+  "best_score": 12,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJKZWFuLUNhbHVkZSIsImlkVG9rZW4iOiIyNDQ1MzY3Yy02ZDJmLTRmZDctYTI3OS1hZjllYzAxMTIyNzgiLCJpYXQiOjE2NDY5NDM1OTZ9.OTDz-fO1YRkeRNlA7Fu_Lgn8XuHS7p00uF2tB_iK0Rw"
+}]

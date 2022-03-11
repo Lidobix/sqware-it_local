@@ -1,0 +1,30 @@
+doctype html
+head(lang='fr')
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='icon' type='image/x-icon' href='/images/favicon.ico')
+  title SqwareIt
+  link(rel='stylesheet' href='/css/style.css')
+
+  h1(id='titreMain') Sqware It ! ! !
+  div(id='messageInformation')
+    
+    if signin == true && emptyInput == false && errorLogin == false
+        p Veuillez saisir dess identifiants que vous réutiliserez à votre prochaine connexion 
+    
+    if signin == true && errorLogin == true
+        p Un compte existe déjà sous ce nom, ayez un peu plus d'inspiration!!!!!
+
+
+    if logged == true 
+        p= messageInformation
+    else
+        if login == true && errorLogin == false && emptyInput == false
+            p Bienveune!! pour cliquer sur des carrés de couleur veuillez vous connecter ou vous 
+                a(href='/signin') inscrire
+        if errorLogin == true  && signin == false
+            p Utilisateur inconnu, veuillez vérifier vos identifiants de connexion ou vous 
+                a(href='/signin') inscrire
+        if emptyInput == true 
+            p Un ou plusieurs champs sont vides!
