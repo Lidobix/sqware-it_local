@@ -7,7 +7,7 @@
   "id": "292e063f-5547-4ced-9e8c-f6528d71e034",
   "avatar": "/images/ver.jpg",
   "score": 0,
-  "best_score": 70,
+  "best_score": 110,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJsdWRvIiwiaWRUb2tlbiI6IjI5MmUwNjNmLTU1NDctNGNlZC05ZThjLWY2NTI4ZDcxZTAzNCIsImlhdCI6MTY0Njk0MzUyMX0.tv1H4fmlD59Dr2pSNJQuQFAskKaw4F1qath4FDNsR-Q"
 },{
   "_id": {
@@ -18,7 +18,7 @@
   "id": "9f0087f1-12b7-46b0-9634-33faeacbc4e4",
   "avatar": "/images/girafe.png",
   "score": 0,
-  "best_score": 32,
+  "best_score": 95,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJDYXBpdGFpbmVDcmFkb2MiLCJpZFRva2VuIjoiOWYwMDg3ZjEtMTJiNy00NmIwLTk2MzQtMzNmYWVhY2JjNGU0IiwiaWF0IjoxNjQ2OTQzNTQ4fQ.0IWYUA8Cr10Y9iJX2dwnGsbrL51ZJatXJWI5B-nM8-o"
 },{
   "_id": {
@@ -29,6 +29,85 @@
   "id": "2445367c-6d2f-4fd7-a279-af9ec0112278",
   "avatar": "/images/koala.png",
   "score": 0,
-  "best_score": 12,
+  "best_score": 65,
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJKZWFuLUNhbHVkZSIsImlkVG9rZW4iOiIyNDQ1MzY3Yy02ZDJmLTRmZDctYTI3OS1hZjllYzAxMTIyNzgiLCJpYXQiOjE2NDY5NDM1OTZ9.OTDz-fO1YRkeRNlA7Fu_Lgn8XuHS7p00uF2tB_iK0Rw"
+},{
+  "_id": {
+    "$oid": "622a814256db20da8e5f866f"
+  },
+  "pseudo": "Jean-Mi",
+  "password": "coincoin",
+  "id": "0c68b86a-5938-4b7e-bc73-b8225f552ed9",
+  "avatar": "/images/poule.png",
+  "score": 0,
+  "best_score": 85,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJKZWFuLU1pIiwiaWRUb2tlbiI6IjBjNjhiODZhLTU5MzgtNGI3ZS1iYzczLWI4MjI1ZjU1MmVkOSIsImlhdCI6MTY0Njk1Mjc3MH0.bAmU5AbQPEWU3FbCXaXmaugRhiq-my5iQI_dry_zlbw"
+},{
+  "_id": {
+    "$oid": "622b16cc940e503dd7811d54"
+  },
+  "pseudo": "Manouchka77",
+  "password": "Manouchka77!",
+  "id": "61d7d223-3ea5-4164-9d0f-e34b000b4702",
+  "avatar": "/images/perroquet.png",
+  "score": 0,
+  "best_score": 99,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJNYW5vdWNoa2E3NyIsImlkVG9rZW4iOiI2MWQ3ZDIyMy0zZWE1LTQxNjQtOWQwZi1lMzRiMDAwYjQ3MDIiLCJpYXQiOjE2NDY5OTEwNTJ9.qsddtloWXDJPAkziomzbVxz1cGAHSShqo5O6txxKC4E"
+},{
+  "_id": {
+    "$oid": "622b2144fd349872274d886b"
+  },
+  "pseudo": "salu",
+  "password": "dave",
+  "id": "53ddbc66-ac93-4a0d-b37b-3362e50c07aa",
+  "avatar": "/images/koala.png",
+  "score": 0,
+  "best_score": 0,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJzYWx1IiwiaWRUb2tlbiI6IjUzZGRiYzY2LWFjOTMtNGEwZC1iMzdiLTMzNjJlNTBjMDdhYSIsImlhdCI6MTY0Njk5MzczMn0.wXSHdTepJh0sZtPh8H3pLRzdmvmnGRlHzl-klydFeJ0"
+},{
+  "_id": {
+    "$oid": "622b310a8809261936444c9a"
+  },
+  "pseudo": "Sousou",
+  "password": "Sisi",
+  "id": "1b647812-f772-4ca6-bd76-510c62f8ecd2",
+  "avatar": "/images/singe.png",
+  "score": 0,
+  "best_score": 0,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJTb3Vzb3UiLCJpZFRva2VuIjoiMWI2NDc4MTItZjc3Mi00Y2E2LWJkNzYtNTEwYzYyZjhlY2QyIiwiaWF0IjoxNjQ2OTk3NzcwfQ.2wEuoSU24EuYG8yqt7OxqP6gCZ-VWRHsRtDr7JCrdo4"
+},{
+  "_id": {
+    "$oid": "622ba49ffbb48014576a45d2"
+  },
+  "pseudo": "coco",
+  "password": "coco",
+  "id": "e4a44b64-eee1-4067-bf53-33a2442dd9e5",
+  "avatar": "/images/poule.png",
+  "score": 0,
+  "best_score": 64,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJjb2NvIiwiaWRUb2tlbiI6ImU0YTQ0YjY0LWVlZTEtNDA2Ny1iZjUzLTMzYTI0NDJkZDllNSIsImlhdCI6MTY0NzAyNzM1OX0.hneT9k38lKoA6okkG5ERJHb5BLgQd78727_tkCxE4Q4"
+},{
+  "_id": {
+    "$oid": "622ba4cafbb48014576a45d3"
+  },
+  "pseudo": "kiki",
+  "password": "kiki",
+  "id": "796dcc3c-cfa4-4b70-a284-4b0fc7dce3fa",
+  "avatar": "/images/vache.png",
+  "score": 0,
+  "best_score": 39,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJraWtpIiwiaWRUb2tlbiI6Ijc5NmRjYzNjLWNmYTQtNGI3MC1hMjg0LTRiMGZjN2RjZTNmYSIsImlhdCI6MTY0NzAyNzQwMn0.Fi1aagkPl9OlefNjMuH0YIkqsCrwWe3hyV3ia1tTdBE"
+},{
+  "_id": {
+    "$oid": "622fae9bdcae66c6cfb76b62"
+  },
+  "pseudo": "cui",
+  "password": "cui",
+  "id": "011827ab-469a-4d75-8b6e-4ab3ac7720f9",
+  "avatar": "/images/ver.jpg",
+  "score": 0,
+  "best_score": 23,
+  "jeuEnCours": false,
+  "decoSauvage": false,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiJjdWkiLCJpZFRva2VuIjoiMDExODI3YWItNDY5YS00ZDc1LThiNmUtNGFiM2FjNzcyMGY5IiwiaWF0IjoxNjQ3MjkyMDU5fQ.hhCjd3hXRjycDEkuSgJNLQHoYwwog9kF0hfAA6LRaNQ"
 }]

@@ -1,7 +1,7 @@
 # 1 - Cloner le projet.
 
 ```
-git clone https://github.com/Lidobix/squareit.git
+git clone https://github.com/Lidobix/sqware-it_local.git
 ```
 
 # 2 - Installation des paquets npm.
@@ -21,7 +21,7 @@ Dans le ficher .env, compléter la variable URL avec le lien vers la db locale:
 ```
 #DB
 URL='<lien MongoCompass vers le fichier db.json>'
-DB='squareit'
+DB='sqware-it'
 COLLECTION='players'
 ```
 
