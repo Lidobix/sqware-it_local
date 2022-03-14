@@ -12,7 +12,7 @@ head(lang='fr')
     
     if signin == true && emptyInput == false && errorLogin == false
         p Veuillez saisir dess identifiants que vous réutiliserez à votre prochaine connexion 
-    
+
     if signin == true && errorLogin == true
         p Un compte existe déjà sous ce nom, ayez un peu plus d'inspiration!!!!!
 
@@ -21,7 +21,7 @@ head(lang='fr')
         p= messageInformation
     else
         if login == true && errorLogin == false && emptyInput == false
-            p Bienveune!! pour cliquer sur des carrés de couleur veuillez vous connecter ou vous 
+            p Bienvenue!! pour cliquer sur des carrés de couleur veuillez vous connecter ou vous 
                 a(href='/signin') inscrire
         if errorLogin == true  && signin == false
             p Utilisateur inconnu, veuillez vérifier vos identifiants de connexion ou vous 

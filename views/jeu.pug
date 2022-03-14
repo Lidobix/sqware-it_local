@@ -26,12 +26,15 @@ if logged == true
 
 #gameZone.visible
   #regleDuJeu.visible 
-    | Vous et votre adversaire vous affronterez sur le même plateau de jeu: sur celui ci seront disposés des tuiles de couleurs et de tailles différentes, l'objectif sera de récupérer en cliquant le maximum de tuiles de la couleur demandée en 20 secondes.
+    | Vous et votre adversaire vous affronterez sur un plateau de jeu commun : sur celui ci seront disposées des tuiles de couleurs et de tailles différentes, le but du jeu est de récupérer un maximum de tuiles correspondantes à la couleur demandée.
     br
     br
-    | Une tuile de la bonne couleur vous rapportera 5pts, une de la mauvaise couleur vous fera perdre 2 points !
+    | Ramasser une tuile de la bonne couleur vous rapportera 5 points, une de la mauvaise couleur vous fera perdre 2 points !
     br
     br
+    | Vous disposez de 20 secondes pour battre votre adversaire.
+    br
+    br 
     | Bon jeu !
   #nouvellePartie
     | Nouvelle partie:
@@ -45,7 +48,7 @@ if logged == true
       p#winner
       p#looser
       form(action='/auth/game' method='GET' id="form")
-        input(type='submit' value='Nouvelle partie' )
+        input(type='submit' value='Bye Bye!' )
 
 script(src='/js/game.js' type="module")
 script(src='/socket.io/socket.io.js')

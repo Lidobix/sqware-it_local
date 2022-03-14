@@ -135,6 +135,8 @@ app.post('/login', (req, res, next) => {
                 score: 0,
                 avatar: choixAvatar(),
                 best_score: data.best_score,
+                jeuEnCours: false,
+                decoSauvage: false,
               };
               player.token = creationToken(player.pseudo, player.id);
               game.joueursConnexionEnCours[player.id] = player;
@@ -146,6 +148,8 @@ app.post('/login', (req, res, next) => {
                 .cookie('best_score', player.best_score)
                 .cookie('score', player.score)
                 .cookie('avatar', player.avatar)
+                .cookie('jeuEnCours', player.jeuEnCours)
+                .cookie('decoSauvage', player.decoSauvage)
                 .redirect('/auth/game');
             } else {
               // Cas de la double connexion
@@ -209,6 +213,8 @@ app.post('/signin', (req, res) => {
               avatar: choixAvatar(),
               score: 0,
               best_score: 0,
+              jeuEnCours: false,
+              decoSauvage: false,
             };
             collection.insertOne(player);
             player.token = creationToken(player.pseudo, player.id);
@@ -220,6 +226,8 @@ app.post('/signin', (req, res) => {
               .cookie('best_score', player.best_score)
               .cookie('score', player.score)
               .cookie('avatar', player.avatar)
+              .cookie('jeuEnCours', player.jeuEnCours)
+              .cookie('decoSauvage', player.decoSauvage)
               .redirect('auth/game');
           } else {
             // Cas de l'utiiisateur déjà inscrit
@@ -241,7 +249,10 @@ app.post('/signin', (req, res) => {
 
 app.get('/auth/*', (req, res, next) => {
   // On redirige vers l'accueil toute tentative de connexion en direct au jeu via l'url:
-  if (game.joueursConnexionEnCours[req.cookies.id] === undefined) {
+  if (
+    game.joueursConnexionEnCours[req.cookies.id] === undefined &&
+    !game.joueursConnectes[req.cookies.id]
+  ) {
     res.redirect('/');
   } else {
     try {
@@ -254,7 +265,7 @@ app.get('/auth/*', (req, res, next) => {
 });
 
 app.get('/auth/game', (req, res) => {
-  // On charhe la liste des meilleurs scores:
+  // On charge la liste des meilleurs scores:
   try {
     mongoClient.connect((err, client) => {
       const db = client.db(dataBase.dbName);
@@ -321,6 +332,12 @@ io.on('connection', (socket) => {
       case 'avatar':
         objCookie.avatar = property[1];
         break;
+      case 'jeuEnCours':
+        objCookie.jeuEnCours = property[1];
+        break;
+      case 'decoSauvage':
+        objCookie.decoSauvage = property[1];
+        break;
     }
   }
 
@@ -331,6 +348,8 @@ io.on('connection', (socket) => {
 
   socket.on('goRoom', () => {
     let room = null;
+    game.joueursConnectes[socket.id].jeuEnCours = true;
+    game.joueursConnectes[socket.id].decoSauvage = false;
 
     // si il n'y a pas de room créée:
     // on en créé une
@@ -356,14 +375,14 @@ io.on('connection', (socket) => {
     }
 
     if (room.joueurs.length === 2) {
-      socket.broadcast.emit(
+      io.to(room.joueurs[0].idSocket).emit(
         'init_label_joueurs',
         room.joueurs[0].pseudo,
         room.joueurs[0].avatar,
         room.joueurs[1].pseudo,
         room.joueurs[1].avatar
       );
-      socket.emit(
+      io.to(room.joueurs[1].idSocket).emit(
         'init_label_joueurs',
         room.joueurs[1].pseudo,
         room.joueurs[1].avatar,
@@ -378,9 +397,11 @@ io.on('connection', (socket) => {
         let compteur = 19;
         let chrono = setInterval(() => {
           io.to(room.id).emit('maj_chrono', compteur);
+
           if (compteur === 0) {
             const podium = checkScore(room);
-            io.to(room.id).emit('fin_de_partie', podium[0], podium[1]);
+
+            io.to(room.id).emit('fin_de_partie', podium[0], podium[1], false);
             clearInterval(chrono);
           }
           compteur--;
@@ -391,51 +412,36 @@ io.on('connection', (socket) => {
 
   socket.on('clic_carre', (carre, salon) => {
     if (carre.class === 'clickable') {
+      // On met à jour les scores:
       const gain = checkgame(carre.couleur, carre.cible);
-      // On attribue un score au joueur dans l'objet joueur connecté
+      salon = majScores(salon, socket.id, gain);
 
-      const score = majScores(game.joueursConnectes[socket.id], gain);
-      // On envoie un socket pour supprimer le carré avec son id
-      io.to(game.joueursConnectes[socket.id].idRoom).emit(
-        'suppression_carre',
-        carre.id
+      io.to(salon.joueurs[0].idSocket).emit(
+        'maj_scores',
+        salon.joueurs[0].score,
+        salon.joueurs[1].score
+      );
+      io.to(salon.joueurs[1].idSocket).emit(
+        'maj_scores',
+        salon.joueurs[1].score,
+        salon.joueurs[0].score
       );
 
-      if (socket.id === salon.joueurs[0].idSocket) {
-        socket.emit(
-          'maj_scores',
-          game.joueursConnectes[socket.id].score,
-          game.joueursConnectes[salon.joueurs[1].idSocket].score
-        );
-
-        socket.broadcast.emit(
-          'maj_scores',
-          game.joueursConnectes[salon.joueurs[1].idSocket].score,
-          game.joueursConnectes[socket.id].score
-        );
-      } else {
-        socket.emit(
-          'maj_scores',
-          game.joueursConnectes[socket.id].score,
-          game.joueursConnectes[salon.joueurs[0].idSocket].score
-        );
-
-        socket.broadcast.emit(
-          'maj_scores',
-          game.joueursConnectes[salon.joueurs[0].idSocket].score,
-          game.joueursConnectes[socket.id].score
-        );
-      }
+      // On supprime le carré:
+      io.to(salon.id).emit('suppression_carre', carre.id, salon);
     }
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnecting', () => {
+    const salon = Array.from(socket.rooms);
+
+    if (game.joueursConnectes[salon[0]].jeuEnCours) {
+      delete game.joueursConnectes[salon[0]];
+    }
+
+    io.to(salon[1]).emit('fin_de_partie', null, null, true);
+
     delete socket.request.headers.cookie;
-
-    game.joueursConnexionEnCours[game.joueursConnectes[socket.id].id] =
-      game.joueursConnectes[socket.id];
-
-    delete game.joueursConnectes[socket.id];
   });
 });
 
@@ -485,10 +491,17 @@ const checkgame = (couleur, cible) => {
     return -2;
   }
 };
-const majScores = (joueur, points) => {
-  joueur.score = joueur.score + points;
-  return joueur.score;
+const majScores = (salon, socketid, points) => {
+  if (salon.joueurs[0].idSocket === socketid) {
+    salon.joueurs[0].score = salon.joueurs[0].score + points;
+  } else {
+    salon.joueurs[1].score = salon.joueurs[1].score + points;
+  }
+  game.joueursConnectes[socketid].score =
+    game.joueursConnectes[socketid].score + points;
+  return salon;
 };
+
 const choixAvatar = () => {
   return game.allAvatars[getRandomInt(game.allAvatars.length - 1)];
 };

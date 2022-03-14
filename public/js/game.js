@@ -3,6 +3,7 @@ window.document.addEventListener('DOMContentLoaded', () => {
 
   const infoCouleurCible = window.document.getElementById('couleurCible');
   let couleurCible;
+  let roomFront = [];
   let carresPresents = [];
   const gameZone = window.document.getElementById('gameZone');
   const btnPlay = window.document.getElementById('bouton_play');
@@ -11,12 +12,12 @@ window.document.addEventListener('DOMContentLoaded', () => {
   const nouvellePartie = window.document.getElementById('nouvellePartie');
   const attenteJoueur = window.document.getElementById('attenteJoueur');
   const bestScores = window.document.getElementById('bestScores');
-  const avatar1 = window.document.getElementById('avatar1');
-  const avatar2 = window.document.getElementById('avatar2');
-  const user1 = window.document.getElementById('user1');
-  const user2 = window.document.getElementById('user2');
-  const score1 = window.document.getElementById('score1');
-  const score2 = window.document.getElementById('score2');
+  const avatarHaut = window.document.getElementById('avatar1');
+  const avatarBas = window.document.getElementById('avatar2');
+  const userHaut = window.document.getElementById('user1');
+  const userBas = window.document.getElementById('user2');
+  const scoreHaut = window.document.getElementById('score1');
+  const scoreBas = window.document.getElementById('score2');
   const timer = window.document.getElementById('timer');
   const endWindow = window.document.getElementById('endWindow');
   const avatarWin = window.document.getElementById('avatarWin');
@@ -59,28 +60,34 @@ window.document.addEventListener('DOMContentLoaded', () => {
   };
   socket.on(
     'init_label_joueurs',
-    (pseudoJoueur1, avatarJoueur1, pseudoJoueur2, avatarJoueur2) => {
-      avatar1.src = convertPath(avatarJoueur1);
-      user1.innerText = pseudoJoueur1;
-      avatar2.src = convertPath(avatarJoueur2);
-      user2.innerText = pseudoJoueur2;
+    (pseudoJoueurHaut, avatarJoueurHaut, pseudoJoueurBas, avatarJoueurBas) => {
+      avatarHaut.src = convertPath(avatarJoueurHaut);
+      userHaut.innerText = pseudoJoueurHaut;
+      avatarBas.src = convertPath(avatarJoueurBas);
+      userBas.innerText = pseudoJoueurBas;
     }
   );
 
-  socket.on('init_game', (infos, salon) => {
+  socket.on('init_game', (infos) => {
     gameZone.classList.remove('masque');
     gameZone.classList.add('visible');
+
     creationCarres(infos.carresADessiner);
+
     couleurCible = infos.couleurCible;
     infoCouleurCible.style.backgroundColor = infos.couleurCible;
   });
 
   socket.on('start_game', (room) => {
+    roomFront = room;
+
     bestScores.style.display = 'none';
     infosJeu.style.display = 'block';
     regleDuJeu.style.display = 'none';
     nouvellePartie.style.display = 'none';
-    socket.emit('start_chrono', room);
+
+    socket.emit('start_chrono', roomFront);
+
     gameZone.addEventListener('click', (event) => {
       const caractCarreClique = {
         id: event.target.id,
@@ -88,37 +95,48 @@ window.document.addEventListener('DOMContentLoaded', () => {
         class: event.target.className,
         cible: couleurCible,
       };
-      socket.emit('clic_carre', caractCarreClique, room);
+
+      socket.emit('clic_carre', caractCarreClique, roomFront);
     });
   });
-  socket.on('suppression_carre', (idCarre) => {
+
+  socket.on('suppression_carre', (idCarre, room) => {
+    roomFront = room;
     suppression_carre(idCarre);
   });
 
-  socket.on('maj_scores', (scoreJoueur1, scoreJoueur2) => {
-    score1.innerText = scoreJoueur1 + ' Pts';
-    score2.innerText = scoreJoueur2 + ' Pts';
+  socket.on('maj_scores', (scoreJoueurHaut, scoreJoueurBas) => {
+    scoreHaut.innerText = scoreJoueurHaut + ' Pts';
+    scoreBas.innerText = scoreJoueurBas + ' Pts';
   });
 
   socket.on('maj_chrono', (chrono) => {
     timer.innerText = `${chrono}s`;
   });
 
-  socket.on('fin_de_partie', (winner, looser) => {
+  socket.on('fin_de_partie', (winner, looser, deco) => {
     for (let i = 0; i < carresPresents.length; i++) {
       const divAsupprimer = window.document.getElementById(carresPresents[i]);
       gameZone.removeChild(divAsupprimer);
     }
 
-    if (winner.score === looser.score) {
-      scoreWinner.innerText = `Match nul ! ! ! ${winner.score} partout ! ! !`;
-      windScore.removeChild(scoreLooser);
+    if (deco) {
+      scoreWinner.innerText = `Votre adversaire est parti sqwarer ailleurs...\nLa victoire est à vous !`;
     } else {
-      scoreWinner.innerText = `${winner.pseudo} gagne avec ${winner.score}pts ! ! !`;
-      scoreLooser.innerText = `${looser.pseudo} . . . . ${looser.score}pts . . .`;
-    }
-    avatarWin.src = convertPath(winner.avatar);
+      if (winner.score === looser.score) {
+        scoreWinner.innerText = `Match nul ! ! ! ${winner.score} partout ! ! !`;
+        windScore.removeChild(scoreLooser);
+      } else {
+        scoreWinner.innerText = `${winner.pseudo} gagne avec ${winner.score}pts ! ! !`;
+        scoreLooser.innerText = `${looser.pseudo} . . . . ${looser.score}pts . . .`;
+      }
 
+      avatarWin.src = convertPath(winner.avatar);
+    }
     endWindow.style.display = 'flex';
+  });
+
+  socket.on('deco_sauvage', (message) => {
+    alert(message);
   });
 });
