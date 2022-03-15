@@ -10,13 +10,17 @@ git clone https://github.com/Lidobix/sqware-it_local.git
 npm install
 ```
 
-(pug, express, session-file-store, websocket, socket.io, socket.io-client, jsonwebtoken, uuid, mongodb , cookie-parser, dotenv)
+paquets intégrés: pug, express, session-file-store, websocket, socket.io, socket.io-client, jsonwebtoken, uuid, mongodb , cookie-parser, dotenv.
 
 # 3 - Installation de la base de données.
 
-Fichier export de la base de données: db.json
+Sous Mongo en local:
 
-Dans le ficher .env, compléter la variable URL avec le lien vers la db locale:
+Créez une base de données nommée "sqware-it"
+Y ajouter une collection "players"
+Importez dans cette collection le fichier export de la base de données: db.json
+
+Dans le ficher .env, compléter la variable URL avec le lien vers la db locale et sauvegardez:
 
 ```
 #DB
@@ -31,6 +35,6 @@ COLLECTION='players'
 npm start
 ```
 
-Application disponible en local sur le port 8100.
+L'application est disponible en local: http://localhost:8100/
 
 # 5 - Have fun!
